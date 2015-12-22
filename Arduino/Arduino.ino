@@ -20,6 +20,11 @@ struct configuration_t conf = {
   9600UL, //unsigned long baudRate; // Serial/RS-485 rate: 9600, 14400, 19200, 28800, 38400, 57600, or 115200
 };
 
+struct valve_t valve[2] = {
+  {VALVE0_PIN, LOW, 0, 0},
+  {VALVE1_PIN, LOW, 0, 0}
+};
+
 void setup(void)
 {
   readConfig();
@@ -60,6 +65,23 @@ void loop(void)
       net.sendResponse(buf);
     } else if (net.assertCommandStarts("set", buf)) {
       processSetCommands();
+    } else if (net.assertCommandStarts("openValve0:", buf)) {
+      // Number signifies seconds to keep valve open
+      unsigned long tmp = strtol(buf, NULL, 10);
+      openValve(0, tmp);
+      net.sendResponse("OK");
+    } else if (net.assertCommandStarts("openValve1:", buf)) {
+      // Number signifies seconds to keep valve open
+      unsigned long tmp = strtol(buf, NULL, 10);
+      openValve(1, tmp);
+      net.sendResponse("OK");
+    } else if (net.assertCommandStarts("statusValve:", buf)) {
+      unsigned long tmp = strtol(buf, NULL, 10);
+      statusValve(tmp);
+    } else if (net.assertCommandStarts("closeValve:", buf)) {
+      unsigned long tmp = strtol(buf, NULL, 10);
+      closeValve(tmp);
+      net.sendResponse("OK");
     } else {
       net.sendResponse("Unrecognized command");
     }
@@ -69,6 +91,48 @@ void loop(void)
   if (millis() - dhtData.lastAttemptTime > DHT_UPDATE_INTERVAL) {
     updateDht();
   }
+  
+  // Check if any valves need to be closed
+  checkValves();
+}
+
+void statusValve(int i) {
+  if (valve[i].status == HIGH) {
+    unsigned long millisLeft = valve[i].openMillisDesired - (millis() - valve[i].timeOpened);
+    sprintf(buf, "OPENED; %lus left", millisLeft/1000);
+  } else {
+    sprintf(buf, "CLOSED");
+  }
+  net.sendResponse(buf);
+}
+
+void checkValves()
+{
+  for (int i=0; i<2; i++)
+  {
+    if (HIGH == valve[i].status && 
+      // All operations with millis may include rollover, so has to be done using substraction only
+      (millis() - valve[i].timeOpened > valve[i].openMillisDesired))
+    {
+      closeValve(i);
+    }
+    // Just in case digital write current known status anyways
+    digitalWrite(valve[i].pin, valve[i].status);
+  }
+}
+
+void closeValve(int id)
+{
+  digitalWrite(valve[id].pin, LOW);
+  valve[id].status = LOW;
+}
+
+void openValve(int id, unsigned long time)
+{
+  digitalWrite(valve[id].pin, HIGH);
+  valve[id].status = HIGH;
+  valve[id].timeOpened = millis();
+  valve[id].openMillisDesired = time*1000UL;
 }
 
 void updateDht()
