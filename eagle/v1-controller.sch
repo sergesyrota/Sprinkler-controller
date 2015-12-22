@@ -245,6 +245,16 @@
 <text x="-10.414" y="8.89" size="1.778" layer="25" rot="R90">D8</text>
 <text x="-12.954" y="8.89" size="1.778" layer="25" rot="R90">D9</text>
 </package>
+<package name="CONNECTOR-4-PIN-0.1">
+<pad name="GND" x="3.81" y="0" drill="0.8" shape="octagon"/>
+<pad name="N/C" x="1.27" y="0" drill="0.8" shape="octagon"/>
+<pad name="DATA" x="-1.27" y="0" drill="0.8" shape="octagon"/>
+<pad name="VCC" x="-3.81" y="0" drill="0.8" shape="octagon"/>
+<wire x1="-5.08" y1="1.27" x2="-5.08" y2="-1.905" width="0.127" layer="21"/>
+<wire x1="-5.08" y1="-1.905" x2="5.08" y2="-1.905" width="0.127" layer="21"/>
+<wire x1="5.08" y1="-1.905" x2="5.08" y2="1.27" width="0.127" layer="21"/>
+<wire x1="5.08" y1="1.27" x2="-5.08" y2="1.27" width="0.127" layer="21"/>
+</package>
 <package name="RS485-ADAPTOR">
 <pad name="12V-IN" x="11.43" y="-3.81" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
 <pad name="A" x="11.43" y="-2.286" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
@@ -269,15 +279,29 @@
 <text x="10.16" y="-1.778" size="1.016" layer="21" rot="R180">A</text>
 <text x="10.16" y="-3.302" size="1.016" layer="21" rot="R180">12V-IN</text>
 </package>
-<package name="CONNECTOR-4-PIN-0.1">
-<pad name="GND" x="3.81" y="0" drill="0.8" shape="octagon"/>
-<pad name="N/C" x="1.27" y="0" drill="0.8" shape="octagon"/>
-<pad name="DATA" x="-1.27" y="0" drill="0.8" shape="octagon"/>
-<pad name="VCC" x="-3.81" y="0" drill="0.8" shape="octagon"/>
-<wire x1="-5.08" y1="1.27" x2="-5.08" y2="-1.905" width="0.127" layer="21"/>
-<wire x1="-5.08" y1="-1.905" x2="5.08" y2="-1.905" width="0.127" layer="21"/>
-<wire x1="5.08" y1="-1.905" x2="5.08" y2="1.27" width="0.127" layer="21"/>
-<wire x1="5.08" y1="1.27" x2="-5.08" y2="1.27" width="0.127" layer="21"/>
+<package name="RS485-ADAPTOR-05">
+<pad name="12V-IN" x="12.7" y="-2.54" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="A" x="12.7" y="-1.27" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="B" x="12.7" y="0" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="GND" x="12.7" y="1.27" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="RX" x="-11.43" y="-2.54" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="TX" x="-11.43" y="-1.27" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="RE/DE" x="-11.43" y="0" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="5V-IN" x="-11.43" y="1.27" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<pad name="12V-OUT" x="-11.43" y="2.54" drill="0.8" diameter="1.016" shape="long" rot="R180"/>
+<wire x1="-12.7" y1="4.572" x2="-12.7" y2="-3.556" width="0.127" layer="21"/>
+<wire x1="-12.7" y1="-3.556" x2="13.97" y2="-3.556" width="0.127" layer="21"/>
+<wire x1="13.97" y1="-3.556" x2="13.97" y2="4.572" width="0.127" layer="21"/>
+<wire x1="13.97" y1="4.572" x2="-12.7" y2="4.572" width="0.127" layer="21"/>
+<text x="-10.16" y="2.032" size="0.762" layer="21">12V-OUT</text>
+<text x="-10.16" y="0.762" size="0.762" layer="21">5V-IN</text>
+<text x="-10.16" y="-0.508" size="0.762" layer="21">RE/DE</text>
+<text x="-10.16" y="-1.778" size="0.762" layer="21">TX</text>
+<text x="-10.16" y="-3.048" size="0.762" layer="21">RX</text>
+<text x="11.43" y="1.778" size="0.762" layer="21" rot="R180">GND</text>
+<text x="11.43" y="0.508" size="0.762" layer="21" rot="R180">B</text>
+<text x="11.43" y="-0.762" size="0.762" layer="21" rot="R180">A</text>
+<text x="11.43" y="-2.032" size="0.762" layer="21" rot="R180">12V-IN</text>
 </package>
 </packages>
 <symbols>
@@ -311,6 +335,17 @@
 <pin name="A0" x="15.24" y="15.24" length="middle" rot="R180"/>
 <text x="-8.382" y="-40.132" size="1.27" layer="95">ARDUINO PRO MINI</text>
 </symbol>
+<symbol name="DHT11">
+<wire x1="-5.08" y1="7.62" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-7.62" x2="5.08" y2="7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="7.62" x2="-5.08" y2="7.62" width="0.254" layer="94"/>
+<pin name="VCC" x="-7.62" y="5.08" length="short" direction="pwr"/>
+<pin name="GND" x="-7.62" y="-5.08" length="short" direction="pwr"/>
+<pin name="DATA" x="7.62" y="2.54" length="short" rot="R180"/>
+<text x="-5.08" y="8.255" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-2.286" size="1.778" layer="95">DHT##</text>
+</symbol>
 <symbol name="RS485-ADAPTER">
 <wire x1="-5.08" y1="5.08" x2="-5.08" y2="-10.16" width="0.254" layer="94"/>
 <wire x1="-5.08" y1="-10.16" x2="15.24" y2="-10.16" width="0.254" layer="94"/>
@@ -326,17 +361,6 @@
 <pin name="TX" x="-7.62" y="-5.08" length="short"/>
 <pin name="RX" x="-7.62" y="-7.62" length="short"/>
 <pin name="RE/DE" x="-7.62" y="-2.54" length="short"/>
-</symbol>
-<symbol name="DHT11">
-<wire x1="-5.08" y1="7.62" x2="-5.08" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="-5.08" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="5.08" y1="-7.62" x2="5.08" y2="7.62" width="0.254" layer="94"/>
-<wire x1="5.08" y1="7.62" x2="-5.08" y2="7.62" width="0.254" layer="94"/>
-<pin name="VCC" x="-7.62" y="5.08" length="short" direction="pwr"/>
-<pin name="GND" x="-7.62" y="-5.08" length="short" direction="pwr"/>
-<pin name="DATA" x="7.62" y="2.54" length="short" rot="R180"/>
-<text x="-5.08" y="8.255" size="1.778" layer="95">&gt;NAME</text>
-<text x="-3.81" y="-2.286" size="1.778" layer="95">DHT##</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -405,7 +429,24 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="RS485-ADAPTER">
+<deviceset name="DHT##" prefix="Q">
+<gates>
+<gate name="G$1" symbol="DHT11" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CONNECTOR-4-PIN-0.1">
+<connects>
+<connect gate="G$1" pin="DATA" pad="DATA"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="VCC" pad="VCC"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RS485-ADAPTER" prefix="Q">
 <gates>
 <gate name="G$1" symbol="RS485-ADAPTER" x="-5.08" y="2.54"/>
 </gates>
@@ -426,18 +467,17 @@
 <technology name=""/>
 </technologies>
 </device>
-</devices>
-</deviceset>
-<deviceset name="DHT##" prefix="Q">
-<gates>
-<gate name="G$1" symbol="DHT11" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="CONNECTOR-4-PIN-0.1">
+<device name="0.05-CONNECTOR" package="RS485-ADAPTOR-05">
 <connects>
-<connect gate="G$1" pin="DATA" pad="DATA"/>
+<connect gate="G$1" pin="12V-IN" pad="12V-IN"/>
+<connect gate="G$1" pin="12V-OUT" pad="12V-OUT"/>
+<connect gate="G$1" pin="5V-IN" pad="5V-IN"/>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="B" pad="B"/>
 <connect gate="G$1" pin="GND" pad="GND"/>
-<connect gate="G$1" pin="VCC" pad="VCC"/>
+<connect gate="G$1" pin="RE/DE" pad="RE/DE"/>
+<connect gate="G$1" pin="RX" pad="RX"/>
+<connect gate="G$1" pin="TX" pad="TX"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -4950,7 +4990,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="P+3" library="supply1" deviceset="V+" device=""/>
 <part name="P+4" library="supply1" deviceset="VCC" device=""/>
-<part name="U$1" library="serge" deviceset="RS485-ADAPTER" device=""/>
 <part name="X1" library="con-tycoelectronics" deviceset="RJ45*2" device="1-B" technology="-6L"/>
 <part name="R1" library="adafruit" deviceset="R-US_" device="R0603" value="120"/>
 <part name="T1" library="transistor" deviceset="*-NPN-" device="SOT23-BEC" technology="BC808"/>
@@ -4968,6 +5007,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <part name="D2" library="adafruit" deviceset="DIODE" device="SMA"/>
 <part name="SL3" library="con-amp-quick" deviceset="M02" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
+<part name="Q2" library="serge" deviceset="RS485-ADAPTER" device="0.05-CONNECTOR"/>
 </parts>
 <sheets>
 <sheet>
@@ -4981,7 +5021,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <instance part="GND2" gate="1" x="111.76" y="45.72"/>
 <instance part="P+3" gate="1" x="63.5" y="73.66" rot="R90"/>
 <instance part="P+4" gate="VCC" x="68.58" y="71.12" rot="R90"/>
-<instance part="U$1" gate="G$1" x="88.9" y="71.12"/>
 <instance part="X1" gate="G$1" x="137.16" y="60.96"/>
 <instance part="R1" gate="G$1" x="104.14" y="20.32"/>
 <instance part="T1" gate="G$1" x="116.84" y="20.32"/>
@@ -4999,22 +5038,23 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <instance part="D2" gate="G$1" x="172.72" y="20.32" rot="R90"/>
 <instance part="SL3" gate="G$1" x="175.26" y="38.1" rot="R180"/>
 <instance part="GND6" gate="1" x="165.1" y="10.16"/>
+<instance part="Q2" gate="G$1" x="88.9" y="71.12"/>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="N$7" class="0">
 <segment>
-<pinref part="U$1" gate="G$1" pin="B"/>
 <pinref part="X1" gate="G$1" pin="2"/>
 <wire x1="129.54" y1="68.58" x2="106.68" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="Q2" gate="G$1" pin="B"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
-<pinref part="U$1" gate="G$1" pin="A"/>
 <pinref part="X1" gate="G$1" pin="1"/>
 <wire x1="129.54" y1="71.12" x2="106.68" y2="71.12" width="0.1524" layer="91"/>
+<pinref part="Q2" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$9" class="0">
@@ -5039,7 +5079,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <segment>
 <wire x1="81.28" y1="68.58" x2="76.2" y2="68.58" width="0.1524" layer="91"/>
 <label x="73.66" y="68.58" size="1.778" layer="95"/>
-<pinref part="U$1" gate="G$1" pin="RE/DE"/>
+<pinref part="Q2" gate="G$1" pin="RE/DE"/>
 </segment>
 </net>
 <net name="RX" class="0">
@@ -5051,7 +5091,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <segment>
 <wire x1="81.28" y1="63.5" x2="76.2" y2="63.5" width="0.1524" layer="91"/>
 <label x="73.66" y="63.5" size="1.778" layer="95"/>
-<pinref part="U$1" gate="G$1" pin="RX"/>
+<pinref part="Q2" gate="G$1" pin="RX"/>
 </segment>
 </net>
 <net name="TX" class="0">
@@ -5063,7 +5103,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <segment>
 <wire x1="81.28" y1="66.04" x2="76.2" y2="66.04" width="0.1524" layer="91"/>
 <label x="73.66" y="66.04" size="1.778" layer="95"/>
-<pinref part="U$1" gate="G$1" pin="TX"/>
+<pinref part="Q2" gate="G$1" pin="TX"/>
 </segment>
 </net>
 <net name="V+" class="0">
@@ -5075,7 +5115,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <segment>
 <wire x1="81.28" y1="73.66" x2="66.04" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="P+3" gate="1" pin="V+"/>
-<pinref part="U$1" gate="G$1" pin="12V-OUT"/>
+<pinref part="Q2" gate="G$1" pin="12V-OUT"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -5089,7 +5129,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="106.68" y1="63.5" x2="111.76" y2="63.5" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="63.5" x2="111.76" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
-<pinref part="U$1" gate="G$1" pin="GND"/>
 <pinref part="X1" gate="G$1" pin="8"/>
 <wire x1="111.76" y1="53.34" x2="111.76" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="53.34" x2="127" y2="53.34" width="0.1524" layer="91"/>
@@ -5112,6 +5151,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="129.54" y1="48.26" x2="129.54" y2="53.34" width="0.1524" layer="91"/>
 <junction x="132.08" y="48.26"/>
 <junction x="129.54" y="53.34"/>
+<pinref part="Q2" gate="G$1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="T1" gate="G$1" pin="E"/>
@@ -5148,7 +5188,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <segment>
 <wire x1="81.28" y1="71.12" x2="71.12" y2="71.12" width="0.1524" layer="91"/>
 <pinref part="P+4" gate="VCC" pin="VCC"/>
-<pinref part="U$1" gate="G$1" pin="5V-IN"/>
+<pinref part="Q2" gate="G$1" pin="5V-IN"/>
 </segment>
 <segment>
 <pinref part="U$2" gate="G$1" pin="VCC"/>
@@ -5182,7 +5222,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="127" y1="60.96" x2="127" y2="63.5" width="0.1524" layer="91"/>
 <junction x="127" y="63.5"/>
 <wire x1="127" y1="73.66" x2="127" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="12V-IN"/>
 <wire x1="106.68" y1="73.66" x2="127" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="SL1" gate="G$1" pin="1"/>
 <wire x1="127" y1="63.5" x2="121.92" y2="63.5" width="0.1524" layer="91"/>
@@ -5193,6 +5232,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="147.32" y1="38.1" x2="147.32" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="147.32" y1="45.72" x2="121.92" y2="45.72" width="0.1524" layer="91"/>
 <junction x="121.92" y="45.72"/>
+<pinref part="Q2" gate="G$1" pin="12V-IN"/>
 </segment>
 </net>
 <net name="D10" class="0">
