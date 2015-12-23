@@ -4872,6 +4872,67 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="buzzer">
+<description>&lt;b&gt;Speakers and Buzzers&lt;/b&gt;&lt;p&gt;
+&lt;ul&gt;Distributors:
+&lt;li&gt;Buerklin
+&lt;li&gt;Spoerle
+&lt;li&gt;Schukat
+&lt;/ul&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="F/HGP">
+<description>&lt;b&gt;BUZZER&lt;/b&gt;</description>
+<wire x1="-7.8361" y1="-1.6158" x2="-7.8361" y2="1.6158" width="0.1524" layer="21" curve="336.697868"/>
+<wire x1="-5.882" y1="-2.032" x2="-5.882" y2="2.032" width="0.1524" layer="21" curve="321.883357"/>
+<wire x1="-6.604" y1="2.032" x2="-6.604" y2="-2.032" width="0.1524" layer="21" curve="180"/>
+<wire x1="-6.604" y1="-2.032" x2="-5.882" y2="-2.032" width="0.1524" layer="21"/>
+<wire x1="-6.604" y1="2.032" x2="-5.882" y2="2.032" width="0.1524" layer="21"/>
+<pad name="1" x="-3.81" y="0" drill="1.016" diameter="2.159" shape="octagon"/>
+<pad name="2" x="3.81" y="0" drill="1.016" diameter="2.159" shape="octagon"/>
+<text x="4.445" y="6.985" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-3.683" y="-3.81" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="BWS">
+<wire x1="-2.54" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94" curve="180"/>
+<wire x1="-2.54" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="3.175" x2="1.27" y2="3.175" width="0.1524" layer="94" curve="-180" cap="flat"/>
+<wire x1="1.27" y1="3.175" x2="2.54" y2="3.175" width="0.1524" layer="94" curve="180" cap="flat"/>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="1.397" width="0.1524" layer="94"/>
+<wire x1="0" y1="-2.54" x2="0" y2="1.397" width="0.1524" layer="94"/>
+<text x="-2.54" y="6.35" size="1.778" layer="95">&gt;NAME</text>
+<text x="6.35" y="0" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="2" x="5.08" y="-2.54" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="1" x="-2.54" y="-2.54" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="F/HGP" prefix="SG">
+<description>&lt;b&gt;BUZZER&lt;/b&gt;&lt;p&gt; Source: Buerklin</description>
+<gates>
+<gate name="G$1" symbol="BWS" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="F/HGP">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="MF" value="" constant="no"/>
+<attribute name="MPN" value="" constant="no"/>
+<attribute name="OC_FARNELL" value="unknown" constant="no"/>
+<attribute name="OC_NEWARK" value="unknown" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -4892,7 +4953,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <part name="R1" library="adafruit" deviceset="R-US_" device="R0603" value="120"/>
 <part name="T1" library="transistor" deviceset="*-NPN-" device="SOT23-BEC" technology="BC808"/>
 <part name="D1" library="adafruit" deviceset="DIODE" device="SMA"/>
-<part name="VALVE-6" library="con-amp-quick" deviceset="M02" device=""/>
+<part name="VALVE-4" library="con-amp-quick" deviceset="M02" device=""/>
 <part name="Q1" library="serge" deviceset="DHT##" device=""/>
 <part name="P+5" library="supply1" deviceset="VCC" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
@@ -4900,7 +4961,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <part name="R2" library="adafruit" deviceset="R-US_" device="R0603" value="120"/>
 <part name="T2" library="transistor" deviceset="*-NPN-" device="SOT23-BEC" technology="BC808"/>
 <part name="D2" library="adafruit" deviceset="DIODE" device="SMA"/>
-<part name="VALVE-7" library="con-amp-quick" deviceset="M02" device=""/>
+<part name="VALVE-5" library="con-amp-quick" deviceset="M02" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="Q2" library="serge" deviceset="RS485-ADAPTER" device="0.05-CONNECTOR"/>
 <part name="U$1" library="serge" deviceset="ARDUINO-PRO-MINI" device=""/>
@@ -4910,6 +4971,8 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <part name="R4" library="adafruit" deviceset="R-US_" device="R0603" value="100"/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="P+8" library="supply1" deviceset="VCC" device=""/>
+<part name="SG1" library="buzzer" deviceset="F/HGP" device=""/>
+<part name="GND5" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4926,7 +4989,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <instance part="R1" gate="G$1" x="104.14" y="20.32"/>
 <instance part="T1" gate="G$1" x="116.84" y="20.32"/>
 <instance part="D1" gate="G$1" x="127" y="20.32" rot="R90"/>
-<instance part="VALVE-6" gate="G$1" x="129.54" y="38.1" rot="R180"/>
+<instance part="VALVE-4" gate="G$1" x="129.54" y="38.1" rot="R180"/>
 <instance part="Q1" gate="G$1" x="96.52" y="111.76"/>
 <instance part="P+5" gate="VCC" x="76.2" y="116.84" rot="R90"/>
 <instance part="GND3" gate="1" x="86.36" y="99.06"/>
@@ -4934,7 +4997,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <instance part="R2" gate="G$1" x="149.86" y="20.32"/>
 <instance part="T2" gate="G$1" x="162.56" y="20.32"/>
 <instance part="D2" gate="G$1" x="172.72" y="20.32" rot="R90"/>
-<instance part="VALVE-7" gate="G$1" x="175.26" y="38.1" rot="R180"/>
+<instance part="VALVE-5" gate="G$1" x="175.26" y="38.1" rot="R180"/>
 <instance part="GND6" gate="1" x="165.1" y="10.16"/>
 <instance part="Q2" gate="G$1" x="88.9" y="71.12"/>
 <instance part="U$1" gate="G$1" x="20.32" y="68.58"/>
@@ -4944,6 +5007,8 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <instance part="R4" gate="G$1" x="200.66" y="109.22"/>
 <instance part="GND7" gate="1" x="208.28" y="104.14"/>
 <instance part="P+8" gate="VCC" x="193.04" y="127"/>
+<instance part="SG1" gate="G$1" x="187.96" y="76.2"/>
+<instance part="GND5" gate="1" x="198.12" y="68.58"/>
 </instances>
 <busses>
 </busses>
@@ -4969,7 +5034,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <pinref part="D1" gate="G$1" pin="C"/>
 <wire x1="127" y1="22.86" x2="127" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="127" y1="27.94" x2="119.38" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="VALVE-6" gate="G$1" pin="2"/>
+<pinref part="VALVE-4" gate="G$1" pin="2"/>
 <wire x1="121.92" y1="35.56" x2="119.38" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="119.38" y1="35.56" x2="119.38" y2="27.94" width="0.1524" layer="91"/>
 <junction x="119.38" y="27.94"/>
@@ -5088,6 +5153,12 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="205.74" y1="109.22" x2="208.28" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="208.28" y1="109.22" x2="208.28" y2="106.68" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="SG1" gate="G$1" pin="2"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="193.04" y1="73.66" x2="198.12" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="73.66" x2="198.12" y2="71.12" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VCC" class="0">
 <segment>
@@ -5128,10 +5199,10 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <junction x="127" y="63.5"/>
 <wire x1="127" y1="73.66" x2="127" y2="63.5" width="0.1524" layer="91"/>
 <wire x1="106.68" y1="73.66" x2="127" y2="73.66" width="0.1524" layer="91"/>
-<pinref part="VALVE-6" gate="G$1" pin="1"/>
+<pinref part="VALVE-4" gate="G$1" pin="1"/>
 <wire x1="127" y1="63.5" x2="121.92" y2="63.5" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="63.5" x2="121.92" y2="45.72" width="0.1524" layer="91"/>
-<pinref part="VALVE-7" gate="G$1" pin="1"/>
+<pinref part="VALVE-5" gate="G$1" pin="1"/>
 <wire x1="121.92" y1="45.72" x2="121.92" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="167.64" y1="38.1" x2="147.32" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="147.32" y1="38.1" x2="147.32" y2="45.72" width="0.1524" layer="91"/>
@@ -5159,7 +5230,7 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <pinref part="D2" gate="G$1" pin="C"/>
 <wire x1="172.72" y1="22.86" x2="172.72" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="172.72" y1="27.94" x2="165.1" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="VALVE-7" gate="G$1" pin="2"/>
+<pinref part="VALVE-5" gate="G$1" pin="2"/>
 <wire x1="167.64" y1="35.56" x2="165.1" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="165.1" y1="35.56" x2="165.1" y2="27.94" width="0.1524" layer="91"/>
 <junction x="165.1" y="27.94"/>
@@ -5190,12 +5261,22 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <label x="40.64" y="55.88" size="1.778" layer="95"/>
 <pinref part="U$1" gate="G$1" pin="D4"/>
 </segment>
+<segment>
+<pinref part="R1" gate="G$1" pin="1"/>
+<wire x1="99.06" y1="20.32" x2="91.44" y2="20.32" width="0.1524" layer="91"/>
+<label x="91.44" y="20.32" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="D5" class="0">
 <segment>
 <wire x1="35.56" y1="53.34" x2="40.64" y2="53.34" width="0.1524" layer="91"/>
 <label x="40.64" y="53.34" size="1.778" layer="95"/>
 <pinref part="U$1" gate="G$1" pin="D5"/>
+</segment>
+<segment>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="144.78" y1="20.32" x2="139.7" y2="20.32" width="0.1524" layer="91"/>
+<label x="139.7" y="20.32" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -5221,9 +5302,9 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <label x="40.64" y="50.8" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="99.06" y1="20.32" x2="93.98" y2="20.32" width="0.1524" layer="91"/>
-<label x="91.44" y="20.32" size="1.778" layer="95"/>
+<pinref part="SG1" gate="G$1" pin="1"/>
+<wire x1="185.42" y1="73.66" x2="177.8" y2="73.66" width="0.1524" layer="91"/>
+<label x="177.8" y="73.66" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="D7" class="0">
@@ -5231,11 +5312,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <pinref part="U$1" gate="G$1" pin="D7"/>
 <wire x1="35.56" y1="48.26" x2="40.64" y2="48.26" width="0.1524" layer="91"/>
 <label x="40.64" y="48.26" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="144.78" y1="20.32" x2="137.16" y2="20.32" width="0.1524" layer="91"/>
-<label x="134.62" y="20.32" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="A3" class="0">
