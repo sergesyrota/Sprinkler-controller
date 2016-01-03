@@ -13,11 +13,13 @@ DHT dht;
 
 char buf[100];
 dht_t dhtData;
+leak_t leakData;
 
 struct configuration_t conf = {
   CONFIG_VERSION,
   // Default values for config
   9600UL, //unsigned long baudRate; // Serial/RS-485 rate: 9600, 14400, 19200, 28800, 38400, 57600, or 115200
+  100, // unsigned int leakThreshold; // threshold after which sensor considers leak is detected
 };
 
 struct valve_t valve[2] = {
@@ -32,10 +34,16 @@ void setup(void)
   strcpy(net.deviceID, NET_ADDRESS);
   Serial.begin(conf.baudRate);
 
+  pinMode(VALVE0_PIN, OUTPUT);
+  digitalWrite(VALVE0_PIN, LOW);
+  pinMode(VALVE1_PIN, OUTPUT);
+  digitalWrite(VALVE1_PIN, LOW);
+  pinMode(LEAK_ENABLE_PIN, OUTPUT);
+  digitalWrite(LEAK_ENABLE_PIN, LOW);
   dht.setup(DHT11_PIN, DHT::DHT11);
+  delay(10);
   updateDht();
-  pinMode(4, OUTPUT);
-  digitalWrite(4, HIGH);
+  updateLeak();
 }
 
 void readConfig()
@@ -63,6 +71,15 @@ void loop(void)
     if (net.assertCommandStarts("getDht", buf)) {
       sprintf(buf, "%dC; %d%%RH; %ds ago", dhtData.temperature, dhtData.humidity, (millis() - dhtData.lastSuccessTime)/1000);
       net.sendResponse(buf);
+    } else if (net.assertCommandStarts("getLeakAlarm", buf)) {
+      if (leakData.alarm) {
+        net.sendResponse("YES");
+      } else {
+        net.sendResponse("NO");
+      }
+    } else if (net.assertCommandStarts("getLeak", buf)) {
+      sprintf(buf, "%d %ds ago", leakData.value, (millis() - leakData.lastSuccessTime)/1000);
+      net.sendResponse(buf);
     } else if (net.assertCommandStarts("set", buf)) {
       processSetCommands();
     } else if (net.assertCommandStarts("openValve0:", buf)) {
@@ -82,6 +99,9 @@ void loop(void)
       unsigned long tmp = strtol(buf, NULL, 10);
       closeValve(tmp);
       net.sendResponse("OK");
+    } else if (net.assertCommandStarts("silenceAlarm", buf)) {
+      leakData.silenceAlarm = true;
+      net.sendResponse("OK");
     } else {
       net.sendResponse("Unrecognized command");
     }
@@ -92,8 +112,23 @@ void loop(void)
     updateDht();
   }
   
+  // Check leak sensor
+  if (millis() - leakData.lastSuccessTime > LEAK_UPDATE_INTERVAL) {
+    updateLeak();
+  }
+  
   // Check if any valves need to be closed
   checkValves();
+
+  // Check if we need to sound a buzzer
+  if (leakData.alarm && !leakData.silenceAlarm) {
+    if ((millis() - leakData.lastBuzzerEnabled) > 1000) {
+      tone(BUZZER_PIN, 2500, 500);
+      leakData.lastBuzzerEnabled = millis();
+    }
+  } else {
+    noTone(BUZZER_PIN);
+  }
 }
 
 void statusValve(int i) {
@@ -147,6 +182,21 @@ void updateDht()
   }
 }
 
+void updateLeak()
+{
+  leakData.lastSuccessTime = millis();
+  digitalWrite(LEAK_ENABLE_PIN, HIGH);
+  delay(1); // give some time for circuit to energize
+  leakData.value = analogRead(LEAK_SENSOR_PIN);
+  digitalWrite(LEAK_ENABLE_PIN, LOW);
+  if (leakData.value > conf.leakThreshold) {
+    leakData.alarm = true;
+  } else {
+    leakData.alarm = false;
+    leakData.silenceAlarm = false; // reset silence alarm as well
+  }
+}
+
 // Write to the configuration when we receive new parameters
 void processSetCommands()
 {
@@ -166,6 +216,15 @@ void processSetCommands()
       net.sendResponse("OK");
       Serial.end();
       Serial.begin(tmp);
+    } else {
+      net.sendResponse("ERROR");
+    }
+  } else if (net.assertCommandStarts("setLeakThreshold:", buf)) {
+    unsigned int tmp = strtol(buf, NULL, 10);
+    if (tmp > 0 && tmp < 1024) {
+      conf.leakThreshold = tmp;
+      saveConfig();
+      net.sendResponse("OK");
     } else {
       net.sendResponse("ERROR");
     }
